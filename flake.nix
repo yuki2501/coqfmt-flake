@@ -22,7 +22,9 @@
             coqfmt = prev.coqfmt.overrideAttrs(old: {
               opam__coq____installed = "true";
               doNixSupport = false;
-              removeOcamlReferences = false;
+              propagateInputs = false;
+              exportSetupHook = false;
+              removeOcamlReferences = true;
             });
           };
       in {
