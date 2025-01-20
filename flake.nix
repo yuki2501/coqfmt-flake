@@ -16,7 +16,7 @@
         pkgs = nixpkgs.legacyPackages.${system};
         on = opam-nix.lib.${system};
         scope =
-          on.buildDuneProject {} package coqfmt { ocaml-base-compiler = "*"; };
+          on.buildDuneProject {  } package coqfmt { ocaml-system = "*"; coq = "*"; };
         overlay = final: prev:
           {
           };
