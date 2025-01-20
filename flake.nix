@@ -16,9 +16,13 @@
         pkgs = nixpkgs.legacyPackages.${system};
         on = opam-nix.lib.${system};
         scope =
-          on.buildDuneProject {  } package coqfmt { ocaml-system = "*"; coq = "*"; };
+          on.buildDuneProject {  } package coqfmt { ocaml-system = "*";  };
         overlay = final: prev:
           {
+            coqfmt = prev.coqfmt.overrideAttrs(old: {
+              doNixSupport = false;
+              removeOcamlReferences = false;
+            });
           };
       in {
         legacyPackages = scope.overrideScope overlay;
